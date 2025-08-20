@@ -49,7 +49,7 @@ function AddProduct({ categories, onProductAdded }) {
     }
     
     setMessage('Adding product...');
-    axios.post('http://localhost:5000/products/add', productData, { withCredentials: true })
+  axios.post(`${import.meta.env.VITE_API_URL}/products/add`, productData, { withCredentials: true })
       .then(() => {
         setMessage('Product added successfully!');
         setProductData({ name: '', category: '', subCategories: [], price: '', unit: 'per 500g', image: '', description: '', inStock: true, discountPrice: '' });

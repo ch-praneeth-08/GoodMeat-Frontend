@@ -34,7 +34,7 @@ function Header() {
   }
 
   const handleLogout = () => {
-    axios.post('http://localhost:5000/auth/logout', {}, { withCredentials: true })
+  axios.post(`${import.meta.env.VITE_API_URL}/auth/logout`, {}, { withCredentials: true })
       .then(() => {
         setIsLoggedIn(false);
         navigate('/');

@@ -45,7 +45,7 @@ function ManageCategories() {
 
   const fetchCategories = () => {
     setLoading(true);
-    axios.get('http://localhost:5000/categories/', { withCredentials: true })
+  axios.get(`${import.meta.env.VITE_API_URL}/categories/`, { withCredentials: true })
       .then(res => setCategories(res.data))
       .catch(err => console.error("Error fetching categories!", err))
       .finally(() => setLoading(false));
@@ -73,8 +73,8 @@ function ManageCategories() {
   const handleCategorySubmit = (e) => {
     e.preventDefault();
     const url = modalMode === 'add' 
-      ? 'http://localhost:5000/categories/add' 
-      : `http://localhost:5000/categories/update/${currentCategory._id}`;
+  ? `${import.meta.env.VITE_API_URL}/categories/add`
+  : `${import.meta.env.VITE_API_URL}/categories/update/${currentCategory._id}`;
     
     axios.post(url, currentCategory, { withCredentials: true })
       .then(() => {
@@ -87,7 +87,7 @@ function ManageCategories() {
 
   const handleDeleteCategory = (categoryId) => {
     if (window.confirm('Are you sure? This will also delete ALL sub-categories within it. This action is irreversible.')) {
-      axios.delete(`http://localhost:5000/categories/${categoryId}`, { withCredentials: true })
+  axios.delete(`${import.meta.env.VITE_API_URL}/categories/${categoryId}`, { withCredentials: true })
         .then(() => {
           showToast('Category deleted successfully!');
           fetchCategories();
@@ -109,8 +109,8 @@ function ManageCategories() {
   const handleSubCategorySubmit = (e) => {
     e.preventDefault();
     const url = modalMode === 'add'
-      ? 'http://localhost:5000/subcategories/add'
-      : `http://localhost:5000/subcategories/update/${currentSubCategory._id}`;
+  ? `${import.meta.env.VITE_API_URL}/subcategories/add`
+  : `${import.meta.env.VITE_API_URL}/subcategories/update/${currentSubCategory._id}`;
       
     const payload = modalMode === 'add'
       ? { ...currentSubCategory, parentCategoryId: currentSubCategory.parentCategory }
@@ -127,7 +127,7 @@ function ManageCategories() {
 
   const handleDeleteSubCategory = (subCategoryId) => {
     if (window.confirm('Are you sure you want to delete this sub-category?')) {
-      axios.delete(`http://localhost:5000/subcategories/${subCategoryId}`, { withCredentials: true })
+  axios.delete(`${import.meta.env.VITE_API_URL}/subcategories/${subCategoryId}`, { withCredentials: true })
         .then(() => {
           showToast('Sub-category deleted successfully!');
           fetchCategories();

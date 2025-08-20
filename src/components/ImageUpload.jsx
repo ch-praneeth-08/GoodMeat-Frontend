@@ -17,7 +17,7 @@ function ImageUpload({ onUpload, value, label = "Product Image" }) {
     setError('');
 
     try {
-      const sigResponse = await axios.get('http://localhost:5000/upload/signature', { withCredentials: true });
+  const sigResponse = await axios.get(`${import.meta.env.VITE_API_URL}/upload/signature`, { withCredentials: true });
       const { signature, timestamp } = sigResponse.data;
       
       const formData = new FormData();

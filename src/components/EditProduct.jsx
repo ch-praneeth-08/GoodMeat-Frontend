@@ -18,8 +18,8 @@ function EditProduct() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = axios.get('http://localhost:5000/categories/', { withCredentials: true });
-    const fetchProductData = axios.get(`http://localhost:5000/products/${id}`, { withCredentials: true });
+  const fetchCategories = axios.get(`${import.meta.env.VITE_API_URL}/categories/`, { withCredentials: true });
+  const fetchProductData = axios.get(`${import.meta.env.VITE_API_URL}/products/${id}`, { withCredentials: true });
     Promise.all([fetchCategories, fetchProductData])
       .then(([categoriesRes, productRes]) => {
         const allCategories = categoriesRes.data;
@@ -70,7 +70,7 @@ function EditProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage('Updating product...');
-    axios.post(`http://localhost:5000/products/update/${id}`, productData, { withCredentials: true })
+  axios.post(`${import.meta.env.VITE_API_URL}/products/update/${id}`, productData, { withCredentials: true })
       .then(() => {
         setMessage('Product updated successfully!');
         setTimeout(() => navigate('/admin'), 1500);

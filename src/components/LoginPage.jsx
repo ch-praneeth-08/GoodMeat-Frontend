@@ -17,7 +17,7 @@ function LoginPage() {
     setError('');
     setLoading(true); // Start loading
 
-    axios.post('http://localhost:5000/auth/login', { password }, { withCredentials: true })
+  axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { password }, { withCredentials: true })
       .then(response => {
         setIsLoggedIn(true);
         navigate('/admin');

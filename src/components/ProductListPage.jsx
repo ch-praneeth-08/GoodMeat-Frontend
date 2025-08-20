@@ -26,7 +26,7 @@ function ProductListPage() {
       params.append('subCategory', subCatId);
     }
 
-    axios.get(`http://localhost:5000/products/?${params.toString()}`)
+  axios.get(`${import.meta.env.VITE_API_URL}/products/?${params.toString()}`)
       .then(response => {
         setProducts(response.data);
       })
@@ -48,7 +48,7 @@ function ProductListPage() {
       // setCategory(null); // <-- THIS LINE HAS BEEN REMOVED
       setActiveSubCategory('All');
 
-      axios.get(`http://localhost:5000/categories/by-name/${categoryName}`)
+  axios.get(`${import.meta.env.VITE_API_URL}/categories/by-name/${categoryName}`)
         .then(response => {
           const fetchedCategory = response.data;
           setCategory(fetchedCategory);

@@ -9,7 +9,7 @@ function ShopByCategory() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/categories/')
+  axios.get(`${import.meta.env.VITE_API_URL}/categories/`)
       .then(response => {
         const visibleCategories = response.data.filter(cat => cat.image);
         setCategories(visibleCategories);
@@ -55,5 +55,4 @@ function ShopByCategory() {
   );
 }
 
-// --- FIX: Corrected 'export export default' to 'export default' ---
 export default ShopByCategory;

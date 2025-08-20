@@ -38,8 +38,8 @@ function AdminDashboard() {
     if (debouncedAdminSearchTerm) {
       params.append('search', debouncedAdminSearchTerm);
     }
-    const apiUrl = `http://localhost:5000/products/?${params.toString()}`;
-    axios.get(apiUrl, { withCredentials: true })
+  const apiUrl = `${import.meta.env.VITE_API_URL}/products/?${params.toString()}`;
+  axios.get(apiUrl, { withCredentials: true })
       .then(res => {
         setProducts(res.data);
         setProductLoading(false);
@@ -50,7 +50,7 @@ function AdminDashboard() {
   };
 
   const fetchCategories = () => {
-    axios.get('http://localhost:5000/categories/', { withCredentials: true })
+  axios.get(`${import.meta.env.VITE_API_URL}/categories/`, { withCredentials: true })
       .then(res => {
         setCategories(res.data);
       }).catch(err => {
@@ -74,7 +74,7 @@ function AdminDashboard() {
 
 
   const handleLogout = () => {
-    axios.post('http://localhost:5000/auth/logout', {}, { withCredentials: true })
+  axios.post(`${import.meta.env.VITE_API_URL}/auth/logout`, {}, { withCredentials: true })
       .then(() => {
         setIsLoggedIn(false);
         navigate('/login');

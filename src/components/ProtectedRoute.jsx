@@ -11,7 +11,7 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     // Only check status if we don't know it yet (isLoggedIn is null)
     if (isLoggedIn === null) {
-      axios.get('http://localhost:5000/auth/status', { withCredentials: true })
+  axios.get(`${import.meta.env.VITE_API_URL}/auth/status`, { withCredentials: true })
         .then(response => {
           // Update the global auth state based on the server's response
           setIsLoggedIn(response.data.isLoggedIn);

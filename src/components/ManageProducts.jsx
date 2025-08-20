@@ -7,7 +7,7 @@ function ManageProducts({ products, loading, triggerRefresh, categories, activeC
 
   const handleDelete = (productId) => { 
     if (window.confirm('Are you sure?')) { 
-      axios.delete(`http://localhost:5000/products/${productId}`, { withCredentials: true })
+  axios.delete(`${import.meta.env.VITE_API_URL}/products/${productId}`, { withCredentials: true })
         .then(() => { 
           setMessage('Product deleted!'); 
           triggerRefresh(); 
